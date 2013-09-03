@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>D3.chart.BulleT example</title>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="d3.chart.min.js"></script>
+  <style type="text/css">
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      margin: auto;
+      padding-top: 40px;
+      position: relative;
+      width: 960px;
+    }
+    
+    table{
+      border: none;
+      margin-left:auto; 
+      margin-right:auto;
+    }
+    td{text-align:center;}
+    td.wide{width:350px;} 
+    td.narrow{width:60px;}
+
+    .BulleT { font: 10px sans-serif; margin-left:auto;margin-right:auto;}
+    .BulleT .marker { stroke: #4D4D4D; stroke-width: 2px;}
+    .BulleT .marker.Sample { fill-opacity:0; stroke: #999999; stroke-width: 2px; }
+    .BulleT .marker.Subject { fill-opacity:0; stroke: #000; stroke-width: 3px; }
+    .BulleT .tick line { stroke: #666; stroke-width: .5px; }
+
+    .BulleT .range.s0 { fill: #90A4A4; }
+    .BulleT .range.s1 { fill: #2CA25F; fill-opacity: 0.7; }
+    .BulleT .range.s2 { fill: #E6E6E6; }
+    .BulleT .range.s3 { fill: #DE2D26; fill-opacity: 0.7; } 
+    .BulleT .range.s4 { fill: #90A4A4; }
+    .BulleT .range.line { stroke: #4D4D4D; stroke-width: 2px; }
+
+    .BulleT .measure.s0 { fill: #4D4D4D; fill-opacity: 0.0; }
+    .BulleT .measure.s1 { fill: #4D4D4D; } 
+    .BulleT .measure.s2 { fill: #eeeeee; fill-opacity: 0.0; }
+    .BulleT .measure.s3 { fill: #999999; fill-opacity: 0.0; }
+    .BulleT .measure.s4 { fill: #4D4D4D; fill-opacity: 0.0; }
+
+    .BulleT .title { font-size: 12px; font-weight: bold; }
+    .BulleT .subtitle.s04 { fill: #000000; font-size: 14px; font-weight: bold;} 
+    .BulleT .subtitle.s13 { fill: #4D4D4D; font-size: 12px; font-weight: bold;}
+    .BulleT .subtitle.s2  { fill: #999999; font-size: 10px;}
+  </style>
+</head>
+<body>
+
+<table border="0"> 
+  <tr>
+  </tr>
+  <tr>
+    <td class="wide">
+      <div id="BulleT_horizontal"></div>
+    </td>
+    <td class="narrow">
+      <div id="BulleT_vertical_Humble"></div>
+    </td>
+  </tr>
+</table>
+  
+	<script src="bulleT-chart.js"></script>
+	<script src="bulleTs-chart.js"></script>
+	<script src="bulleT-app.js"></script>
+</body>
+</html>
