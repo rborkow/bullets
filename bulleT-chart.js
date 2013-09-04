@@ -29,8 +29,8 @@ d3.chart("BulleT", {
 		this.tickFormat(this.xScale.tickFormat(d3.format("+.0d")));
     	this.reverse(true);
 		this.orient("left");
-		this.terjedelem(function(d) {
-			return d.terjedelem;
+		this.limits(function(d) {
+			return d.limits;
 		});
 		this.ranges(function(d) {
 			return d.ranges;
@@ -47,8 +47,8 @@ d3.chart("BulleT", {
 				data_ranges[1] = data.ranges[1];
 				data_ranges[2] = data.ranges[2];
 				data_ranges[3] = data.ranges[3];
-        terjedelem = data.terjedelem;
-        data_ranges.unshift(terjedelem[1]);
+        limits = data.limits;
+        data_ranges.unshift(limits[1]);
         
 				return this.selectAll("rect.range").data(data_ranges);
 			},
@@ -58,7 +58,7 @@ d3.chart("BulleT", {
 			events: {
 				enter: function(d, i) {
           var orientation = chart.orientation();
-          var terjedelem = chart.terjedelem;
+          var limits = chart.limits;
             this.attr("class", function(d, i) { return "range s" + i; })
 						  .attr("width", chart.xScale)
 						  .attr("height", function(){
@@ -68,13 +68,13 @@ d3.chart("BulleT", {
                   return chart.height();
                 }   
               })
-						  .attr("x", this.chart()._reverse ? chart.xScale :  terjedelem[0]); //Usage: condition ? value-if-true : value-if-false
+						  .attr("x", this.chart()._reverse ? chart.xScale :  limits[0]); //Usage: condition ? value-if-true : value-if-false
 				},
 				"merge:transition": function() {
-          var terjedelem = chart.terjedelem;
+          var limits = chart.limits;
 					this.duration(chart.duration())
 						.attr("width", chart.xScale)
-						.attr("x", chart._reverse ? chart.xScale :  terjedelem[0]);
+						.attr("x", chart._reverse ? chart.xScale :  limits[0]);
 				},
 				exit: function() {
 					this.remove();
@@ -132,8 +132,8 @@ d3.chart("BulleT", {
 			dataBind: function(data) {
 				// @CodeXmonk: This layer operates on "measures" data
 				data_measures = data.measures;
-        var terjedelem = data.terjedelem;
-        data_measures.unshift(terjedelem[1]);
+        var limits = data.limits;
+        data_measures.unshift(limits[1]);
 
 				return this.selectAll("rect.measure").data(data_measures);
 			},
@@ -149,18 +149,18 @@ d3.chart("BulleT", {
           }else{
             hy = chart.height() / 2;
           }
-          var terjedelem = chart.terjedelem();
+          var limits = chart.limits();
 					this.attr("class", function(d, i) { return "measure s" + i; })
 						.attr("width", chart.xScale)
 						.attr("height", hy)
-						.attr("x", terjedelem[0])
+						.attr("x", limits[0])
 						.attr("y", hy/2);
 				},
 				"merge:transition": function() {
-          var terjedelem = chart.terjedelem;
+          var limits = chart.limits;
 					this.duration(chart.duration())
 						.attr("width", chart.xScale)
-						.attr("x", terjedelem[0])
+						.attr("x", limits[0])
 				}
 			}
 		});
@@ -337,13 +337,13 @@ d3.chart("BulleT", {
 			title: data.title,
 			dimension: data.dimension,
 			randomizer: data.randomizer,
-			terjedelem: data.terjedelem.slice(),
+			limits: data.limits.slice(),
 			ranges: data.ranges.slice().sort(d3.descending),
 			rangesLine: data.rangesLine.slice(),
 			measures: data.measures.slice().sort(d3.descending),
 			markers: data.markers.slice()
 		};
-		this.xScale.domain([newData.terjedelem[0], newData.terjedelem[1]]);
+		this.xScale.domain([newData.limits[0], newData.limits[1]]);
     this.titleGroup
       .style("text-anchor", function(){
         if( orientation == "vertical" ){
@@ -412,10 +412,10 @@ d3.chart("BulleT", {
 		return this;
 	}, 
 
-	// @CodeXmonk: terjedelem (20,80)
-	terjedelem: function(x) {
-		if (!arguments.length) return this._terjedelem;
-		this._terjedelem = x;
+	// @CodeXmonk: limits (20,80)
+	limits: function(x) {
+		if (!arguments.length) return this._limits;
+		this._limits = x;
 		return this;
 	},
 
