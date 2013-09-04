@@ -1,5 +1,5 @@
 [
-    {"title":"BMI","dimension":"BMI Units","limits":[-4,4],"ranges":[-2,-0.5,0.5,3],"rangesLine":[0,1.21],"measures":[1.21],"markers":[0]},
-    {"title":"LDL Cholesterol","dimension":"mg/dL","limits":[-10,10],"ranges":[-4,-1.5,1.5,7],"rangesLine":[0, -3.2],"measures":[-3.2],"markers":[0]},
-    {"title":"Weight","dimension":"lbs","limits":[-6,8],"ranges":[-3,-0.5,0.5,7],"rangesLine":[0,4],"measures":[4],"markers":[0]}
+    {"title":"BMI","dimension":"BMI Units","limits":[-4,4],"ranges":[-2,-0.5,0.5,3],"rangesLine":[0,1.21],"measures":[1.21] },
+    {"title":"LDL Cholesterol","dimension":"mg/dL","limits":[-10,10],"ranges":[-4,-1.5,1.5,7],"rangesLine":[0, -3.2],"measures":[-3.2] },
+    {"title":"Weight","dimension":"lbs","limits":[-6,8],"ranges":[-3,-0.5,0.5,7],"rangesLine":[0,4],"measures":[4] }
   ]

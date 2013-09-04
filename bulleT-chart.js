@@ -18,9 +18,7 @@ d3.chart("BulleT", {
 		this._margin = { top: 0, right: 0, bottom: 0, left: 0 };
 		this.orientation("");
 		this.duration(0);
-		this.markers(function(d) {
-			return d.markers;
-		});
+		this.markers = "0";
 		this.measures(function(d) {
 			return d.measures;
 		});
@@ -169,7 +167,7 @@ d3.chart("BulleT", {
 			dataBind: function(data) {
 				// @CodeXmonk: This layer operates on "markerSample" datum
 				data = data.markers;
-				return this.selectAll("line.marker").data(data.slice(0,1));
+				return this.selectAll("line.marker").data("0");
 			},
 			insert: function() {
 				return this.append("line");
@@ -202,49 +200,6 @@ d3.chart("BulleT", {
 						  .attr("x2", chart.xScale)
 						  .attr("y1", whichOne / 4)
 						  .attr("y2", whichOne - (whichOne/4) );
-				}
-			}
-		});
-/******************************************************************************/
-		this.layer("markerSubject", this.base.append("g").classed("markerSubject", true), {
-			dataBind: function(data) {
-				// @CodeXmonk: This layer operates on "markerSubject" datum
-				data = data.markers;
-				  return this.selectAll("rect.marker").data(data.slice(1,2));
-			},
-			insert: function() {
-				  return this.append("rect");
-			},
-			events: {
-				enter: function() {
-          var orientation = chart.orientation();
-          var whichOne;
-          if( orientation == "vertical" ){
-            whichOne = chart.width();
-          }else{
-            whichOne = chart.height();
-          }
-            this.attr("class", "marker Subject")
-              .attr("width", 6)
-              .attr("y", -(whichOne/10)) 
-              .attr("height",function(d) {return whichOne+(whichOne/5);})
-              .attr("x", chart.xScale)
-              .attr("transform", "translate(-3,0)");
-				},
-				"merge:transition": function() {
-          var orientation = chart.orientation();
-          var whichOne;
-          if( orientation == "vertical" ){
-            whichOne = chart.width();
-          }else{
-            whichOne = chart.height();
-          }
-            this.duration(chart.duration())
-              .attr("width", 6)
-              .attr("y", -(whichOne/10))
-              .attr("height",function(d) {return whichOne+(whichOne/5);})
-              .attr("x", chart.xScale)
-              .attr("transform", "translate(-3,0)");
 				}
 			}
 		});
@@ -341,7 +296,6 @@ d3.chart("BulleT", {
 			ranges: data.ranges.slice().sort(d3.descending),
 			rangesLine: data.rangesLine.slice(),
 			measures: data.measures.slice().sort(d3.descending),
-			markers: data.markers.slice()
 		};
 		this.xScale.domain([newData.limits[0], newData.limits[1]]);
     this.titleGroup
@@ -375,25 +329,6 @@ d3.chart("BulleT", {
 		this.dimension.text(data.dimension);
 		//this.subtitle.text(data.markers[1]);
 
-		this.subtitle.attr("class",function(d) {
-          switch (true)
-          {
-            case ( (data.markers[1] < 30) || (70 < data.markers[1]) ): 
-              return "subtitle s04";
-              break;
-              break;
-            case ( (30 <= data.markers[1]) && (data.markers[1] < 40) ):
-              return "subtitle s13";
-              break;
-            case ( (40 <= data.markers[1]) && (data.markers[1] <= 60) ):
-              return "subtitle s2";
-              break;
-            case ( (60 < data.markers[1]) && (data.markers[1] <= 70) ):
-              return "subtitle s13";
-              break;
-          }
-        }
-      )
 		return newData;
 	},
 
